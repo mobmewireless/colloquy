@@ -16,10 +16,6 @@ Colloquy is a library to build [USSD](http://en.wikipedia.org/wiki/Unstructured_
 
 You'll need to have a basic understanding of how [USSD](http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data)  applications work. The most common example of a USSD application is how folks check balance on a mobile phone: on Vodafone India for example, this is by dialing _*141#_. This special "phone number" is a USSD code.
 
-This presentation can help explain the underpinnings of this library, and how the concepts in the [USSD spec](http://www.telecomspace.com/messaging-ussd.html) map to this library:
-
-<div style="width:425px" id="__ss_10758608"><strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/vishnu/ussd-renderer-redux" title="USSD Renderer Redux">USSD Renderer Redux</a></strong><object id="__sse10758608" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=mes-002-120101233746-phpapp02&stripped_title=ussd-renderer-redux&userName=vishnu" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><param name="wmode" value="transparent"/><embed name="__sse10758608" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=mes-002-120101233746-phpapp02&stripped_title=ussd-renderer-redux&userName=vishnu" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" width="425" height="355"></embed></object><div style="padding:5px 0 12px">View more <a href="http://www.slideshare.net/">presentations</a> from <a href="http://www.slideshare.net/vishnu">vishnu</a>.</div></div>
-
 ## Installing for Core Development
 
 **Note:** you only need to do this if you intend to tweak the redux code itself. If you just want to develop USSD applications, see Installation for Flow Developers.
