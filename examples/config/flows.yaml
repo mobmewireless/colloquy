@@ -1,0 +1,22 @@
+active:
+  - url
+  - calculator
+  - art_of_war
+  - database
+  - active_record
+  - special/special_redis: RedisFlow
+  - pass
+  - metadata
+  - hangman
+  - prefix_menu
+  - crossover
+  - pagination
+
+load_paths:
+  - "./flows"
+  - "/tmp"
+
+session_store: memory
+maximum_message_length: 160
+maximum_unicode_length: 70
+flow_pool_size: 10 #set higher value in production

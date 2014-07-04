@@ -1,0 +1,2 @@
+activation:
+  success: "Thank you! %{count} mobile numbers in total!"

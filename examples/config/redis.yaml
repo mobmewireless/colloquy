@@ -1,0 +1,9 @@
+testing:
+  host: localhost
+  
+sessions:
+  host: localhost
+
+state:
+  host: localhost
+

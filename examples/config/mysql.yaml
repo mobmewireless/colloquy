@@ -1,0 +1,18 @@
+testing:
+  host: 'localhost'
+  username: 'root'
+  password: ''
+  reconnect: true
+  database: 'activations'
+  encoding: 'utf8'
+  adapter: 'em_mysql2'
+  
+customer:
+  host: 'localhost'
+  username: 'root'
+  password: ''
+  reconnect: true
+  database: 'activations'
+  encoding: 'utf8'
+  adapter: 'em_mysql2'
+

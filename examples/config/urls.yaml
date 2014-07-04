@@ -1,0 +1,18 @@
+log_cancellations:
+  active: http://google.com/?q=hello
+  backup: http://www.google.com/search?q=%%msisdn%%
+  
+pinger:
+  log_cancellations:
+    verb: get
+    params:
+      msisdn: 9745044399
+  tick: 5
+  
+timeouts:
+  connection: 2
+  inactivity: 5
+
+logger:
+  log_level: debug
+  path: log/urls.log  
