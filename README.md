@@ -157,6 +157,3 @@ You can see then that the Renderer is just a small piece of the pie. To deploy U
 Depending on what kind of platform your mobile operator's USSD gateway is developed in, you will also have to write some sort of gateway middleware (some folks call this a 'stub') to connect the Renderer to the operator's USSD gateway. USSD gateways are usually proprietary solutions and they differ from gateway to gateway. As of now, the Renderer does not come with any default stubs, but these should be simple to write because the Renderer is flexible enough to speak any protocol and language. In the ideal scenario, you'll just use a stub that can send and process HTTP requests served by the Renderer Server.
 
 What if you do not have connectivity to a gateway? Renderer provides a simulator that can simulate a mobile subscriber and allow you to run your flow.
-
-
-# {include:file:TODO.md}
