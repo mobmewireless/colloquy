@@ -5,13 +5,13 @@ require 'em-synchrony/mysql2'
 
 RSpec::Matchers.define :be_a_memory_store_with do |flow, key, value|
   match do |actual|
-    actual[flow][key].should == value
+    expect(actual[flow][key]).to eq value
   end
 end
 
 describe Colloquy::Renderer do
 
-  RENDERER_PATH_ROOT = Pathname.new(File.dirname(__FILE__)).join('..', '..', '..', '..', 'examples')
+  RENDERER_PATH_ROOT = Pathname.new(File.dirname(__FILE__)).join('..', '..', 'examples')
 
   subject(:renderer) { Colloquy::Renderer.new }
   let(:example_renderer) { Colloquy::Renderer.new(path_root: RENDERER_PATH_ROOT) }
@@ -177,12 +177,12 @@ describe Colloquy::Renderer do
     it 'loads the flow pool' do
       example_renderer.prepare!
       flow_pool = Colloquy::Renderer::FlowPool.flow_pool
-      expect(flow_pool).to have(12).items
+
+      expect(flow_pool.keys.count).to eq 12
       expect(flow_pool.keys).to include(:calculator, :special_redis)
       expect(flow_pool[:calculator].first.class).to be(CalculatorFlow)
       expect(flow_pool[:special_redis].first.class).to be(RedisFlow)
     end
-
   end
 
   describe '#apply' do

@@ -5,8 +5,6 @@ require 'em-synchrony/mysql2'
 
 describe Colloquy::Simulator do
 
-  RENDERER_PATH_ROOT = Pathname.new(File.dirname(__FILE__)).join('..', '..', 'examples')
-
   subject(:simulator) { Colloquy::Simulator.new(path_root: RENDERER_PATH_ROOT)}
 
   before(:each) do

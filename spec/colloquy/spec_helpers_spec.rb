@@ -8,7 +8,7 @@ class SpecHelperCalculator
   
   index {
     request {
-      prompt "Please enter your input:"
+      prompt 'Please enter your input:'
     }
     
     process { |input|
@@ -48,28 +48,28 @@ describe SpecHelperCalculator do
     Colloquy::Renderer.new(:path_root => SPEC_HELPERS_RENDERER_PATH_ROOT)
   end
   
-  describe "stub_mysql!" do
-    it "should properly stub out MysQL" do
+  describe 'stub_mysql!' do
+    it 'should properly stub out MysQL' do
       stub_mysql!
       calculator
     end
   end
   
-  describe "apply_chain" do
-    it "should work with chained inputs" do
+  describe 'apply_chain' do
+    it 'works with chained inputs' do
       stub_mysql!
-      apply_chain(calculator, nil, 2, 3).last.should == "5"
+
+      expect(apply_chain(calculator, nil, 2, 3).last).to eq '5'
     end
   end
   
-  describe "state_for" do
-    it "should return the flow state" do
+  describe 'state_for' do
+    it 'returns the flow state' do
       stub_mysql!
-      state_for(calculator).should == {:node=>:index, :flow_state=>:init, :previous=>{}, :flow_name=>:spec_helper_calculator}
+      expect(state_for(calculator)).to eq(node: :index, flow_state: :init, previous: {}, flow_name: :spec_helper_calculator)
       
       calculator.apply
-      
-      state_for(calculator).should == {:node=>:index, :flow_state=>:request, :previous=>{:node=>:index, :flow_state=>:init, :flow_name=>:spec_helper_calculator}, :flow_name=>:spec_helper_calculator, :back=>{:node=>:index, :flow_name=>:spec_helper_calculator}, :prompt=>["Please enter your input:"], :page=>1}
+      expect(state_for(calculator)).to eq(node: :index, flow_state: :request, previous: {node: :index, flow_state: :init, flow_name: :spec_helper_calculator}, flow_name: :spec_helper_calculator, back: {node: :index, flow_name: :spec_helper_calculator}, prompt: ['Please enter your input:'], page: 1)
     end
   end
 end

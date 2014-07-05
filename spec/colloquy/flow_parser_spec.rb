@@ -759,12 +759,12 @@ describe Colloquy::FlowParser do
       expect(calculator.send(:state)).to include(node: :world, flow_state: :request)
     end
     
-    it 'should be able to switch between flows' do
+    it 'is able to switch between flows' do
       expect {
         calculator.apply(3)
       }.to raise_error { |error|
         expect(error).to be_kind_of Colloquy::SwitchFlowJump
-        error.payload.should == { :node => :world, :flow => :art_of_war }
+        expect(error.payload).to eq(node: :world, flow: :art_of_war)
       }
     end
     

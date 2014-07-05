@@ -167,7 +167,7 @@ describe Colloquy::Node do
         expect(node.render).to eq("1. Hello, World!\n2. Vishnu")
       end
       
-      it 'should be possible to render the menu' do
+      it 'is possible to render the menu' do
         node.instance_eval do
           request {
             menu << :hello << :user
@@ -177,7 +177,7 @@ describe Colloquy::Node do
         end
         
         node.request!
-        node.render.should == "1. Hello, World!\n2. Vishnu"
+        expect(node.render).to eq "1. Hello, World!\n2. Vishnu"
       end
     end
   end

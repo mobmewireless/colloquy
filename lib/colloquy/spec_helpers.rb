@@ -3,9 +3,9 @@
 # writing flow specs
 module Colloquy::SpecHelpers
   def stub_mysql!
-    ActiveRecord::Base.stub(:establish_connection)
-    Colloquy::Helpers::MySQL::MySQLProxy.stub(:instance).and_return(
-      double("MySQLProxy", :configure => nil, :configuration => {})
+    allow(ActiveRecord::Base).to receive(:establish_connection)
+    allow(Colloquy::Helpers::MySQL::MySQLProxy).to receive(:instance).and_return(
+      double('MySQLProxy', configure: nil, configuration: {})
     )
   end
   

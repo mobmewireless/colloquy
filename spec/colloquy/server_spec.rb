@@ -12,7 +12,7 @@ describe Colloquy::Server do
   end
 
   before(:each) do
-    Colloquy::Helpers::MySQL::MySQLProxy.instance.stub(:mysql_connection)
+    allow(Colloquy::Helpers::MySQL::MySQLProxy.instance).to receive(:mysql_connection)
   end
 
   let(:request_error) { Proc.new { |resp| fail "API request failed: #{resp.inspect}" } }

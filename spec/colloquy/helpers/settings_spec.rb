@@ -32,13 +32,13 @@ describe Colloquy::Helpers::Settings do
     end
 
     it 'should throw an error if required libraries are not present' do
-      Colloquy::Helpers::Settings::SettingsProxy.instance.stub(:require_settings_libraries).and_raise(LoadError)
+      allow(Colloquy::Helpers::Settings::SettingsProxy.instance).to receive(:require_settings_libraries).and_raise(LoadError)
 
       expect { settings_helper.settings.configure! }.to raise_error Colloquy::SettingsGemsNotFoundException
     end
 
-    it 'should read configuration from the provided file' do
-      expect(settings_helper.settings.configured?).to be_true
+    it 'reads configuration from the provided file' do
+      expect(settings_helper.settings.configured?).to be true
       expect(settings_helper.settings.instance_variable_get(:@settings_configurations).keys).to include(:testing)
     end
 

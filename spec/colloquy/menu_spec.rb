@@ -383,7 +383,7 @@ describe Colloquy::Menu do
     end
     
     it 'respects the maximum message length' do
-      Colloquy.stub(:maximum_message_length).and_return(140)
+      allow(Colloquy).to receive(:maximum_message_length).and_return(140)
       calculator.node_add(:index) do 
         request {
           menu << :add << :delete << :elephant << :fox << :god << :hitler << :idiot << :joker << :king << :love << :mate << :nether << :open << :poker << :queen << :rise << :shake << :token << :umbrella

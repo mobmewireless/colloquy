@@ -16,7 +16,7 @@ describe Colloquy::Helpers::Redis do
   before(:each) do
     @em_redis_mock = double(EM::Protocols::Redis, set: true, get: 'Hello')
 
-    Colloquy::Helpers::Redis::RedisProxy.instance.stub(:redis_connection).and_return(@em_redis_mock)
+    allow(Colloquy::Helpers::Redis::RedisProxy.instance).to receive(:redis_connection).and_return(@em_redis_mock)
   end
 
   describe '#configure' do
@@ -32,13 +32,13 @@ describe Colloquy::Helpers::Redis do
     end
 
     it 'should throw an error if required libraries are not present' do
-      Colloquy::Helpers::Redis::RedisProxy.instance.stub(:require_redis_libraries).and_raise(LoadError)
+      allow(Colloquy::Helpers::Redis::RedisProxy.instance).to receive(:require_redis_libraries).and_raise(LoadError)
 
       expect { redis_helper.redis }.to raise_error Colloquy::RedisGemsNotFoundException
     end
 
-    it 'should read configuration from the provided file' do
-      expect(redis_helper.redis.configured?).to be_true
+    it 'reads configuration from the provided file' do
+      expect(redis_helper.redis.configured?).to be true
       expect(redis_helper.redis.instance_variable_get(:@redis_connections)).to include(testing: @em_redis_mock)
     end
 
