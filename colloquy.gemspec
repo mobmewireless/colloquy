@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://www.mobme.in/"
   s.summary     = "A complete framework for writing USSD applications in Ruby."
   s.description = 'Colloquy is an evented framework for building fast and efficient USSD applications in Ruby.'
-
+  s.bindir      = 'bin'
   s.required_rubygems_version = ">= 1.3.6"
 
   s.add_development_dependency "rake"
@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency "eventmachine"
   s.add_dependency "em-http-request"
   s.add_dependency 'url-agent'
+  s.add_dependency 'scribe-logger'
 
   s.files = Dir.glob("{lib,examples,bin}/**/*") + %w(README.md TODO.md)
   s.require_path = 'lib'

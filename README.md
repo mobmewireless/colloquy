@@ -128,7 +128,7 @@ USSD Renderer Redux comes with a lot of helper methods that allow for complex US
 
 * A helper method called _url_ that is a wrapper around Colloquy::URLAgent. This is a robust library that calls HTTP URLs in an evented fashion and supports fallback URLs for a single service.
 
-* Many other evented helpers, _redis_, _mysql_ to access these servers and a _settings_ helper to read in configuration.
+* Many other evented helpers, _redis_, _scribe_ and _mysql_ to access these servers and a _settings_ helper to read in configuration.
 
 ### More Example Flows
 
@@ -143,6 +143,7 @@ Checkout the code and take a look at the examples/ directory. There are a lot mo
   * metadata_flow.rb: Describes how to access request metadata (for e.g. parameters like mobile number location passed in from the stub) within the flow.
   * pagination\_flow: A menu with a long prefix.
   * pass\_flow: Describes the _pass_ special statement that is used mostly in direct entry flows.
+  * scribe\_flow: for the _scribe_ helper. Configuration in config/scribe.yaml
   * settings\_flow: for the _settings_ helper. Configuration in config/settings.yaml
   * url\_flow: for the url helper. Configuration in config/urls.yaml
 
