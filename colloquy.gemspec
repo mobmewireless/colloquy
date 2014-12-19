@@ -11,14 +11,11 @@ Gem::Specification.new do |s|
   s.bindir      = 'bin'
   s.required_rubygems_version = ">= 1.3.6"
 
-  s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
   s.add_development_dependency "guard"
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "simplecov"
   s.add_development_dependency "flog"
-  s.add_development_dependency "mysql2"
-  s.add_development_dependency "activerecord", "~> 4.1.1"
   s.add_development_dependency "random-word-generator"
   s.add_development_dependency "yard"
   s.add_development_dependency "ci_reporter"
@@ -37,6 +34,10 @@ Gem::Specification.new do |s|
   s.add_dependency "em-http-request"
   s.add_dependency 'url-agent'
   s.add_dependency 'scribe-logger'
+  s.add_dependency 'activerecord', '~> 4.1.1'
+  s.add_dependency 'mysql2'
+  s.add_dependency 'rake'
+
 
   s.files = Dir.glob("{lib,examples,bin}/**/*") + %w(README.md TODO.md)
   s.require_path = 'lib'
