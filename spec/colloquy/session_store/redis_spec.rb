@@ -13,25 +13,25 @@ describe Colloquy::SessionStore::Redis do
 
     allow(redis).to receive(:redis_connection).and_return(@redis_double)
   end
-  
+
   it 'should take adequate options' do
     Colloquy::SessionStore::Redis.new(identifier: :session)
   end
-  
+
   it 'should set and retrieve the key with a standard name and expiry' do
-    expect(@redis_double).to receive(:set).with(Colloquy::SessionStore::Redis::KEY_PREFIX + 'session' + ':' + 'hello', "\x04\bI\"\nHello\x06:\x06EF", Colloquy::SessionStore::Redis::KEY_EXPIRY)
+    expect(@redis_double).to receive(:set).with(Colloquy::SessionStore::Redis::KEY_PREFIX + 'session' + ':' + 'hello', "\x04\bI\"\nHello\x06:\x06ET", Colloquy::SessionStore::Redis::KEY_EXPIRY)
     expect(@redis_double).to receive(:get).with(Colloquy::SessionStore::Redis::KEY_PREFIX + 'session' + ':' + 'hello')
 
     redis['hello'] = 'Hello'
 
     expect(redis['hello']).to eq'Hello'
   end
-  
+
   it 'should encode complex objects' do
     expect(@redis_double).to receive(:set).with(Colloquy::SessionStore::Redis::KEY_PREFIX + 'session' +':' + 'hello',
-      "\x04\b{\a:\nworldI\"\x13ten_ton_hammer\x06:\x06EF:\rprevious{\x06;\x00I\"\x11hello world!\x06;\x06F",
+      "\x04\b{\a:\nworldI\"\x13ten_ton_hammer\x06:\x06ET:\rprevious{\x06;\x00I\"\x11hello world!\x06;\x06T",
       Colloquy::SessionStore::Redis::KEY_EXPIRY)
-    
+
     redis['hello'] = { world: 'ten_ton_hammer', previous: { world: 'hello world!' } }
   end
 end
