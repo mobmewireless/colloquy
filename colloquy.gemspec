@@ -27,14 +27,14 @@ Gem::Specification.new do |s|
 
   s.add_dependency "em-synchrony"
   s.add_dependency "goliath"
-  s.add_dependency "activesupport", "~> 4.1.1"
-  s.add_dependency "em-redis", "~> 0.3.0"
+  s.add_dependency "activesupport"
+  s.add_dependency "em-redis"
   s.add_dependency "yajl-ruby"
   s.add_dependency "eventmachine"
   s.add_dependency "em-http-request"
   s.add_dependency 'url-agent'
   s.add_dependency 'scribe-logger'
-  s.add_dependency 'activerecord', '~> 4.1.1'
+  s.add_dependency 'activerecord'
   s.add_dependency 'mysql2'
   s.add_dependency 'rake'
 
