@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+$:.push(File.expand_path(File.dirname(__FILE__) + '/../lib'))
+
+require 'colloquy'
+require 'colloquy/server'
+require 'colloquy/runner'
+
+begin
+  Colloquy::Runner.run!(ARGV)
+rescue Exception => e
+  p e
+  puts e.backtrace
+end
