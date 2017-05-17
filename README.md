@@ -16,9 +16,11 @@ Colloquy is a library to build [USSD](http://en.wikipedia.org/wiki/Unstructured_
 
 You'll need to have a basic understanding of how [USSD](http://en.wikipedia.org/wiki/Unstructured_Supplementary_Service_Data)  applications work. The most common example of a USSD application is how folks check balance on a mobile phone: on Vodafone India for example, this is by dialing _*141#_. This special "phone number" is a USSD code.
 
+This (old) presentation can help explain the underpinnings of this library, and how the concepts in the [USSD spec](http://www.telecomspace.com/messaging-ussd.html) map to this library: [USSD Renderer Redux](http://www.slideshare.net/vishnu/ussd-renderer-redux).
+
 ## Installing for Core Development
 
-**Note:** you only need to do this if you intend to tweak the redux code itself. If you just want to develop USSD applications, see Installation for Flow Developers.
+**Note:** you only need to do this if you intend to tweak the Colloquy code itself. If you just want to develop USSD applications, see Installation for Flow Developers.
 
 First install rvm and ruby > 1.9.3.
 
@@ -37,7 +39,7 @@ Then do:
 
 ### Introduction
 
-While programming using ussd-renderer-redux, Flows are collections of Nodes. Each Node has two blocks: a Request block that sends a USSD request to an MS and a Process block where the response received from an MS is analysed. The initial node is by convention named _index_.
+While programming using Colloquy, Flows are collections of Nodes. Each Node has two blocks: a Request block that sends a USSD request to an MS and a Process block where the response received from an MS is analysed. The initial node is by convention named _index_.
 
 A typical USSD request-response would follow this path:
 
@@ -54,7 +56,7 @@ Flows are just Ruby classes with a module {Colloquy::FlowParser} mixed in. This 
 Before we start, if you'd like to just jump in, there are several examples available in the examples/ directory if you've cloned the Git repository. See {CalculatorFlow} for a jumpstart.
 
 This is a simple flow:
-    
+
     class HelloWorldFlow
       include Colloquy::FlowParser
 
@@ -68,28 +70,28 @@ This is a simple flow:
         }
       }
     end
-    
+
 We begin a normal Ruby class definition, include the flow parser module and start writing the _index_ node by writing index and then opening up a curly braces pair. Nested within the index node, you have two blocks: a request block and a process block.
 
-Remember: the request block always asks for input, and the process block always analyses it. This is a convention that you should stick to throughout Redux flows to ensure readable and idiomatic flows.
+Remember: the request block always asks for input, and the process block always analyses it. This is a convention that you should stick to throughout Colloquy flows to ensure readable and idiomatic flows.
 
-To run this flow: 
+To run this flow:
 
 * Save this as lib/hello\_world\_flow.rb
 * Add a line to app/config/flows.yaml under _active_:
-  
+
         - hello_world
 
 * Run this in the simulator:
 
-        $ bundle exec ussd-renderer -s app
+        $ bundle exec colloquy -s app
         Please enter flow name:
         hello_world
-        Please enter msisdn: 
+        Please enter msisdn:
         111
-        Please enter session_id: 
+        Please enter session_id:
         1212
-        Initial input (for direct flow): 
+        Initial input (for direct flow):
         > (press Enter)
         Hello World
         ---Flow complete---
@@ -104,7 +106,7 @@ Congrats, you've written and tested your first flow!
 
 ### Writing More Complex Flows
 
-USSD Renderer Redux comes with a lot of helper methods that allow for complex USSD applications to be built. Here are some of its features:
+Colloquy comes with a lot of helper methods that allow for complex USSD applications to be built. Here are some of its features:
 
 * A Menu is one of the most common elements of an interactive USSD flow. This is what a simple menu looks like:
 
@@ -124,7 +126,7 @@ USSD Renderer Redux comes with a lot of helper methods that allow for complex US
       2. Subtract
       Enter your choice:
 
-  Redux comes built in with a very capable menu that can paginate larger menus automatically, provide different prefixes and suffixes on each page, and automatically map user input to descriptive menu keys.
+  Colloquy comes built in with a very capable menu that can paginate larger menus automatically, provide different prefixes and suffixes on each page, and automatically map user input to descriptive menu keys.
 
 * A helper method called _url_ that is a wrapper around Colloquy::URLAgent. This is a robust library that calls HTTP URLs in an evented fashion and supports fallback URLs for a single service.
 
@@ -149,12 +151,12 @@ Checkout the code and take a look at the examples/ directory. There are a lot mo
 
 ## Deployment Concepts
 
-A USSD application running under the renderer typically has these components running end-to-end from mobile subscriber to the flow running inside the renderer:
+A USSD application running under Colloquy typically has these components running end-to-end from mobile subscriber to the flow running inside:
 
-    Mobile Subscriber <--> Mobile Operator <--> USSD Gateway <--> Gateway Middleware (or Stub) <--> USSD Renderer <--> Flow
+    Mobile Subscriber <--> Mobile Operator <--> USSD Gateway <--> Gateway Middleware (or Stub) <--> Colloquy <--> Flow
 
-You can see then that the Renderer is just a small piece of the pie. To deploy USSD applications, you'll have to get connectivity to a USSD gateway that can send and receive USSD messages to and from mobile subscribers. This usually involves talking to a mobile network operator in your country to see if they can provide you access.
+You can see then that Colloquy is just a small piece of the pie. To deploy USSD applications, you'll have to get connectivity to a USSD gateway that can send and receive USSD messages to and from mobile subscribers. This usually involves talking to a mobile network operator in your country to see if they can provide you access.
 
-Depending on what kind of platform your mobile operator's USSD gateway is developed in, you will also have to write some sort of gateway middleware (some folks call this a 'stub') to connect the Renderer to the operator's USSD gateway. USSD gateways are usually proprietary solutions and they differ from gateway to gateway. As of now, the Renderer does not come with any default stubs, but these should be simple to write because the Renderer is flexible enough to speak any protocol and language. In the ideal scenario, you'll just use a stub that can send and process HTTP requests served by the Renderer Server.
+Depending on what kind of platform your mobile operator's USSD gateway is developed in, you will also have to write some sort of gateway middleware (some folks call this a 'stub') to connect Colloquy to the operator's USSD gateway. USSD gateways are usually proprietary solutions and they differ from gateway to gateway. As of now, Colloquy does not come with any default stubs, but these should be simple to write because Colloquy is flexible enough to speak any protocol and language. In the ideal scenario, you'll just use a stub that can send and process HTTP requests served by the Colloquy Server.
 
-What if you do not have connectivity to a gateway? Renderer provides a simulator that can simulate a mobile subscriber and allow you to run your flow.
+What if you do not have connectivity to a gateway? Colloquy provides a simulator that can simulate a mobile subscriber and allow you to run your flow.
